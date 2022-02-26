@@ -19,7 +19,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 )
 public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
     public static final String[] WHITE_LIST = {
-            "/", "auth/login"
+            "/", "/auth/login"
     };
 
     public static final String[] WHITE_LIST_RESOURCES = {

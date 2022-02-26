@@ -1,7 +1,9 @@
 
 <!DOCTYPE html>
 <html lang="en"  xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+>
 <head>
     <meta charset="UTF-8">
     <title>Organization Page</title>
@@ -12,7 +14,7 @@
 <div class="container">
     <div class="row">
         <div class="col-10 mx-auto">
-            <form th:method="post" enctype="multipart/form-data" th:object="${organization}">
+            <form th:object="${organization}" th:action="@{/organization/update/{id}(id = *{id})}" th:method="post" enctype="multipart/form-data">
 
                 <div class="form-group" style="display: none">
                     <label for="id"></label>

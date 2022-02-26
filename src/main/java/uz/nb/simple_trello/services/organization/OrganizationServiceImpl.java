@@ -17,6 +17,7 @@ import uz.nb.simple_trello.utils.BaseUtils;
 import uz.nb.simple_trello.utils.validators.organization.OrganizationValidator;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class OrganizationServiceImpl extends
@@ -24,15 +25,17 @@ public class OrganizationServiceImpl extends
         implements OrganizationService {
 
     private final FileStorageService fileStorageService;
+    private final AuditAwareImpl auditAware;
 
     @Autowired
     protected OrganizationServiceImpl(OrganizationRepository repository,
                                       OrganizationMapper mapper,
                                       OrganizationValidator validator,
                                       BaseUtils baseUtils,
-                                      FileStorageService fileStorageService) {
+                                      FileStorageService fileStorageService, AuditAwareImpl auditAware) {
         super(repository, mapper, validator, baseUtils);
         this.fileStorageService = fileStorageService;
+        this.auditAware = auditAware;
     }
 
     @Override
@@ -48,6 +51,7 @@ public class OrganizationServiceImpl extends
         return organization.getId();
     }
 
+
     @Override
     public void delete(Long id) {
         repository.deleteById(id);
@@ -55,9 +59,12 @@ public class OrganizationServiceImpl extends
 
     @Override
     public void update(OrganizationUpdateDto updateDto) {
+        Optional<Organization> byId = repository.findById(updateDto.getId());
+
         Organization organization = mapper.fromUpdateDto(updateDto);
+        organization.setLogo(byId.get().getLogo());
         organization.setId(updateDto.getId());
-        System.out.println(updateDto.getId());
+        organization.setOwner(byId.get().getOwner());
         repository.save(organization);
     }
 

@@ -15,7 +15,7 @@ import uz.nb.simple_trello.dto.organization.OrganizationUpdateDto;
 import uz.nb.simple_trello.services.organization.OrganizationService;
 
 @Controller
-@RequestMapping("/organization/*")
+@RequestMapping("/organization/")
 public class OrganizationController extends AbstractController<OrganizationService> {
 
 
