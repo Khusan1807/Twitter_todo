@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragment.html :: header('Organization Details Page')">
+</head>
+<body>
+<header>
+    <section th:include="fragment.html :: navbar"></section>
+</header>
+<main>
+    <div class="container">
+        <div class="row">
+            <div class="col-6 offset-3">
+                <p class="h4" th:text="${organization.name}"></p>
+                <p class="h4" th:text="${organization.email}"></p>
+                <p class="h4" th:text="${organization.code}"></p>
+                <img class="mr-3" width="120" height="180" th:src="@{${organization.logo}}"
+                     th:alt="${organization.name}"/>
+                <form method="get" th:action="@{/templates/organizations/list}">
+                    <button type="submit" class="btn btn-warning">Back</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+<footer>
+    <section th:include="fragment.html :: js"></section>
+</footer>
+</body>
+</html>
