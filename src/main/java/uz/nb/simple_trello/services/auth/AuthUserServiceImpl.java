@@ -1,6 +1,5 @@
 package uz.nb.simple_trello.services.auth;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -32,18 +31,17 @@ public class AuthUserServiceImpl extends
     private final PasswordEncoder encoder;
     private final AuthRoleRepository authRoleRepository;
     private final AuditAwareImpl auditAware;
-
-    @Autowired
-    UserDetailsService userDetailsService;
+    private UserDetailsService userDetailsService;
 
     protected AuthUserServiceImpl(AuthUserRepository repository,
                                   AuthUserMapper mapper,
                                   AuthUserValidator validator,
-                                  BaseUtils baseUtils, PasswordEncoder encoder, AuthRoleRepository authRoleRepository, AuditAwareImpl auditAware) {
+                                  BaseUtils baseUtils, PasswordEncoder encoder, AuthRoleRepository authRoleRepository, AuditAwareImpl auditAware, UserDetailsService userDetailsService) {
         super(repository, mapper, validator, baseUtils);
         this.encoder = encoder;
         this.authRoleRepository = authRoleRepository;
         this.auditAware = auditAware;
+        this.userDetailsService = userDetailsService;
     }
 
     @Override
@@ -97,5 +95,9 @@ public class AuthUserServiceImpl extends
             throw new UsernameNotFoundException("User not found");
         }
         userDetailsService.loadUserByUsername(dto.getUsername());
+    }
+
+    public void logout() {
+        userDetailsService = null;
     }
 }

@@ -1,12 +1,12 @@
 package uz.nb.simple_trello.controller.auth;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import uz.nb.simple_trello.config.security.UserDetails;
 import uz.nb.simple_trello.controller.base.AbstractController;
 import uz.nb.simple_trello.dto.auth.AuthUserCreateDto;
 import uz.nb.simple_trello.dto.auth.LoginDto;
@@ -17,12 +17,14 @@ import uz.nb.simple_trello.services.auth.AuthUserService;
 public class AuthUserController extends AbstractController<AuthUserService> {
 
 
-    public AuthUserController(AuthUserService service) {
-        super(service);
-    }
+  private final  PasswordEncoder passwordEncoder;
+  private  final UserDetails userDetails;
 
-    @Autowired
-    PasswordEncoder passwordEncoder;
+    public AuthUserController(AuthUserService service, PasswordEncoder passwordEncoder, UserDetails userDetails) {
+        super(service);
+        this.passwordEncoder = passwordEncoder;
+        this.userDetails = userDetails;
+    }
 
 
 
@@ -49,6 +51,18 @@ public class AuthUserController extends AbstractController<AuthUserService> {
     @RequestMapping(value = "login", method = RequestMethod.POST)
     public String login(@ModelAttribute LoginDto dto) {
         service.login(dto);
+        return "/";
+    }
+
+    @RequestMapping(value = "logout", method = RequestMethod.GET)
+    public String logoutPage() {
+        return "/auth/logout";
+    }
+
+
+    @RequestMapping(value = "logout", method = RequestMethod.POST)
+    public String logout() {
+        service.logout();
         return "/";
     }
 

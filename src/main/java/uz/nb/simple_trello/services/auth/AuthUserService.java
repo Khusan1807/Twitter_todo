@@ -15,4 +15,7 @@ public interface AuthUserService extends GenericCrudService<
         Long
         > {
     void login(LoginDto dto);
+
+    void logout();
+
 }
