@@ -18,6 +18,7 @@ public class Organization extends Auditable {
 
     private String logo;
 
+    @Column(nullable = false)
     private String email;
 
     @Column(unique = true, nullable = false)

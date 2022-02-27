@@ -1,6 +1,7 @@
 package uz.nb.simple_trello.services.project;
 
 import uz.nb.simple_trello.criteria.GenericCriteria;
+import uz.nb.simple_trello.dto.organization.OrganizationDto;
 import uz.nb.simple_trello.dto.project.ProjectCreateDto;
 import uz.nb.simple_trello.dto.project.ProjectDto;
 import uz.nb.simple_trello.dto.project.ProjectUpdateDto;
@@ -16,4 +17,5 @@ public interface ProjectService extends GenericCrudService<
         GenericCriteria,
         Long> {
     List<ProjectDto> getAllProjects(Long id);
+
 }

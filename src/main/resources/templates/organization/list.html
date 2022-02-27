@@ -107,6 +107,7 @@
             </div>
 
         </nav>
+        <div style="text-align: center"><h1>Organizations </h1></div>
 
         <div class="container">
             <div class="row">
@@ -137,7 +138,7 @@
                         </th>
 
 
-                        <th class="icons">
+                        <th class="icons d-flex justify-content-between">
                             <a th:href="@{/organization/detail/{id}/(id = ${organization.id})}">👁</a>
                             <a href="#">🔐</a>
                             <a href="#">🔓</a>
@@ -148,9 +149,9 @@
                     </tbody>
                 </table>
 
-                    <a th:href="@{/organization/create}" style="margin-left: 1000px;">
-                        <button class="btn btn-primary " type="submit"> ➕</button>
-                    </a>
+                <a th:href="@{/organization/create}" style="margin-left: 1000px;">
+                    <button class="btn btn-primary " type="submit"> ➕</button>
+                </a>
 
             </div>
         </div>

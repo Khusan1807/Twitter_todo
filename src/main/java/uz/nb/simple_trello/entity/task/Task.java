@@ -23,6 +23,7 @@ public class Task extends Auditable {
 
     private Long priority;
 
+    @Column( nullable = false)
     private Long projectId;
 
     @Column(columnDefinition = " timestamp ")

@@ -18,7 +18,7 @@ public class ProjectMember extends Auditable {
     @Column(name = "project_id",nullable = false)
     private Long projectId;
 
-    @Column(name = "user_id")
+    @Column(name = "user_id", nullable = false)
     private Long userId;
 
     @Column(name = "is_lead")

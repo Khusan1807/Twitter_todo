@@ -123,7 +123,6 @@
                         <th scope="col">Phone Number</th>
                         <th scope="col">Role</th>
                         <th scope="col">Blocked</th>
-                        <th scope="col">Tasks</th>
                         <th scope="col">CRUD</th>
 
                     </tr>
@@ -134,14 +133,9 @@
                         <th th:text="${user.username}"></th>
                         <th th:text="${user.email}"></th>
                         <th th:text="${user.phoneNumber}"></th>
-                        <th th:text="${user.getRole().getName()}"></th>
+                        <th th:text="${user.getRole().getCode}"></th>
                         <th th:text="${user.blocked}"></th>
-                        <th>
-                            <form th:action="@{/task/list/{id}(id = ${user.id})}" method="get">
-                                <button type="submit" class="btn btn-success">Tasks</button>
-                            </form>
 
-                        </th>
 
 
                         <th class="icons d-flex justify-content-between">

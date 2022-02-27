@@ -3,6 +3,7 @@ package uz.nb.simple_trello.reposiroty.project;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import uz.nb.simple_trello.dto.organization.OrganizationDto;
 import uz.nb.simple_trello.dto.project.ProjectDto;
 import uz.nb.simple_trello.entity.project.Project;
 import uz.nb.simple_trello.reposiroty.base.AbstractRepository;
@@ -14,4 +15,7 @@ public interface ProjectRepository extends JpaRepository<Project, Long>, Abstrac
 
     @Query("select u from Project u where u.organizationId=:id")
     List<Project> findPro(@Param("id") Long id);
+
+    @Query("select o from Organization o where o.id=:orgId")
+    List<OrganizationDto> findOrgs(@Param("orgId") Long orgId);
 }

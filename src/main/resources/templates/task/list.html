@@ -107,6 +107,7 @@
             </div>
 
         </nav>
+        <div style="text-align: center"><h1>Tasks</h1></div>
 
         <div class="container">
             <div class="row">
@@ -131,7 +132,7 @@
                         <th th:text="${task.priority}"></th>
                         <th th:text="${task.deadline}"></th>
 
-                        <th class="icons">
+                        <th class="icons d-flex justify-content-between">
                             <a th:href="@{/task/detail/{id}/(id = ${task.id})}">👁</a>
                             <a href="#">🔐</a>
                             <a href="#">🔓</a>
@@ -143,6 +144,10 @@
                 </table>
             </div>
         </div>
+
+        <a th:href="@{/task/create}" style="margin-left: 1000px;">
+            <button class="btn btn-primary " type="submit"> ➕</button>
+        </a>
     </aside>
 
 

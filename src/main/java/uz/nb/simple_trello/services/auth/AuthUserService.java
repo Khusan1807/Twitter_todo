@@ -5,7 +5,6 @@ import uz.nb.simple_trello.dto.auth.AuthUserCreateDto;
 import uz.nb.simple_trello.dto.auth.AuthUserDto;
 import uz.nb.simple_trello.dto.auth.AuthUserUpdateDto;
 import uz.nb.simple_trello.dto.auth.LoginDto;
-import uz.nb.simple_trello.entity.auth.AuthUser;
 import uz.nb.simple_trello.services.base.GenericCrudService;
 
 import java.util.List;
@@ -20,9 +19,9 @@ public interface AuthUserService extends GenericCrudService<
     void login(LoginDto dto);
     List<AuthUserDto> usersList();
 
-    Object getUsers();
 
 
-//    AuthUser find(AuthUser authUser);
+    AuthUserDto user(Long id);
+
 
 }

@@ -1,10 +1,12 @@
 package uz.nb.simple_trello.controller.auth;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import uz.nb.simple_trello.config.security.UserDetails;
@@ -23,14 +25,13 @@ public class AuthUserController extends AbstractController<AuthUserService> {
 
 
     private final PasswordEncoder passwordEncoder;
-    private final AuditAwareImpl auditAware;
-    UserDetails userDetails;
+    @Autowired
+     AuditAwareImpl auditAware;
 
 
     public AuthUserController(AuthUserService service, PasswordEncoder passwordEncoder, AuditAwareImpl auditAware) {
         super(service);
         this.passwordEncoder = passwordEncoder;
-        this.auditAware = auditAware;
     }
 
 
@@ -89,11 +90,16 @@ public class AuthUserController extends AbstractController<AuthUserService> {
         return "auth/list";
     }
 
-    @RequestMapping(value = "lists", method = RequestMethod.GET)
-    public String list(Model model) {
-        model.addAttribute("users", service.usersList());
-        return "auth/list";
+    @PreAuthorize("hasRole('SUPER_USER')")
+    @RequestMapping(value = "detail/{id}", method = RequestMethod.GET)
+    public String detail(Model model, @PathVariable(name = "id") Long id) {
+        model.addAttribute("AuthUser", service.user(id));
+        return "auth/detail";
     }
+
+
+
+
 
 
 }

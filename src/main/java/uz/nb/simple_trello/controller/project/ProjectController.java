@@ -82,10 +82,7 @@ public class ProjectController extends AbstractController<ProjectService> {
 //-------------------------------------------------------//
 
 
-    @RequestMapping(value = "project", method = RequestMethod.GET)
-    public String projectPage() {
-        return "index/project";
-    }
+
 
     @PreAuthorize("hasAnyRole('SUPER_USER', 'ADMIN')")
     @RequestMapping(value = "index", method = RequestMethod.GET)

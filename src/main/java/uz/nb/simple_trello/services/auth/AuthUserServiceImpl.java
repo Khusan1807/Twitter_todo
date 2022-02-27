@@ -103,9 +103,11 @@ public class AuthUserServiceImpl extends
 
     }
 
+
+
     @Override
-    public Object getUsers() {
-        return null;
+    public AuthUserDto user(Long id) {
+        return mapper.toDto(repository.findAuthUserById(id));
     }
 
     @Override

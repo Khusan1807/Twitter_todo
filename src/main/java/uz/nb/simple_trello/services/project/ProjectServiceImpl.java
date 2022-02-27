@@ -3,6 +3,7 @@ package uz.nb.simple_trello.services.project;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uz.nb.simple_trello.criteria.GenericCriteria;
+import uz.nb.simple_trello.dto.organization.OrganizationDto;
 import uz.nb.simple_trello.dto.project.ProjectCreateDto;
 import uz.nb.simple_trello.dto.project.ProjectDto;
 import uz.nb.simple_trello.dto.project.ProjectUpdateDto;
@@ -75,6 +76,7 @@ public class ProjectServiceImpl extends AbstractService<
         List<Project> projectsByOrganizationIdd = repository.findPro(id);
         return mapper.toDto(projectsByOrganizationIdd);
     }
+
 
 
     @Override

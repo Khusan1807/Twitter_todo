@@ -13,10 +13,11 @@ import javax.persistence.*;
 @Table(name = "project")
 public class Project extends Auditable {
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
-
+    @Column(nullable = false)
     private String description;
+    @Column(nullable = false)
     private String tz;
     private Long organizationId;
 
