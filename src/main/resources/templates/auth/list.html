@@ -19,7 +19,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500;600;700&family=Red+Hat+Display&family=Rubik:wght@400;500;600;700&display=swap"
           rel="stylesheet">
 </head>
+<style>
+    .logos {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+    }
+
+    header {
+        /*overflow: auto;*/
+    }
+</style>
 <body>
+
 <header>
     <main>
         <div class="menu-bar">
@@ -88,7 +100,7 @@
                             <i class="fas fa-angle-down">Profile</i>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li><a class="dropdown-item" th:href="@{/auth/update}">Edit</a></li>
+                            <li><a class="dropdown-item" href="@{/auth/update}">Edit</a></li>
                             <li><a class="dropdown-item" th:href="@{/auth/logout}">Logout</a></li>
                         </ul>
                     </div>
@@ -100,37 +112,57 @@
 
         </nav>
 
+        <div class="container ">
+            <div class="row">
+                <table class="table">
+                    <thead class="thead-light">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Phone Number</th>
+                        <th scope="col">Code</th>
+                        <th scope="col">Role</th>
+                        <th scope="col">Blocked</th>
 
-        <!--                </div>-->
-        <!--        <div sec:authorize="hasAnyRole('SUPER_USER','ADMIN')>-->
-        <div sec:authorize="hasAnyRole('SUPER_USER', 'ADMIN')">
-            <div class=" container">
-                <h3>ОсОО “Energi.kg”</h3>
-                <div class="content">
-                    <div class="contents">
-                        <div class="content-text">
-                            <p>Projects</p>
-                            <p>Export</p>
-                        </div>
-                        <div class="box">
-                            <p>ОсОО “Energi.kg”</p>
-                            <div class="box-text">
-                                    <span>
-                                        <img src="./assets/imges/sunrise.png" alt="">12/04/2021
-                                    </span>
-                                <span>
-                                        <img src="./assets/imges/sunset2.png" alt=""> 12/04/2021
-                                    </span>
-                                <span>
-                                       <img src="./assets/imges/users.png" alt=""> Adyl, Azhar, Arthur
-                                    </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="user,iter :  ${users}">
+                        <th th:text="${iter.count}"></th>
+                        <th th:text="${user.username}"></th>
+                        <th th:text="${user.email}"></th>
+                        <th th:text="${user.phoneNumber}"></th>
+                        <th th:text="${user.code}"></th>
+                        <th th:text="${user.getRole().getName()}"></th>
+                        <th th:text="${user.blocked}"></th>
+                        <th>
+                            <form th:action="@{/task/list/{id}(id=${user.id})}">
+                                <button type="submit" class="btn btn-success">Tasks</button>
+                            </form>
+
+                        </th>
+
+
+                        <th class="icons d-flex justify-content-between">
+                            <a th:href="@{/auth/detail/{id}/(id = ${user.id})}">👁</a>
+                            <a href="#">🔐</a>
+                            <a href="#">🔓</a>
+                            <a th:href="@{/auth/delete/{id}(id=${user.id})}">🗑</a>
+                            <a th:href="@{/auth/update/{id}(id=${user.id})}">📝</a>
+                        </th>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <a th:href="@{/auth/register}" style="margin-left: 1000px;">
+                    <button class="btn btn-primary " type="submit"> ➕</button>
+                </a>
+
             </div>
         </div>
     </aside>
+
 
 </header>
 

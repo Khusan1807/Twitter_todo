@@ -9,8 +9,10 @@ import uz.nb.simple_trello.dto.auth.AuthUserCreateDto;
 import uz.nb.simple_trello.dto.auth.AuthUserDto;
 import uz.nb.simple_trello.dto.auth.AuthUserUpdateDto;
 import uz.nb.simple_trello.dto.auth.LoginDto;
+import uz.nb.simple_trello.dto.organization.OrganizationDto;
 import uz.nb.simple_trello.entity.auth.AuthUser;
 import uz.nb.simple_trello.entity.base.AuditAwareImpl;
+import uz.nb.simple_trello.entity.organization.Organization;
 import uz.nb.simple_trello.mapper.auth.AuthUserMapper;
 import uz.nb.simple_trello.reposiroty.auth.AuthRoleRepository;
 import uz.nb.simple_trello.reposiroty.auth.AuthUserRepository;
@@ -66,12 +68,23 @@ public class AuthUserServiceImpl extends
 
     @Override
     public void update(AuthUserUpdateDto updateDto) {
+        AuthUser user = repository.findAuthUserById(updateDto.getId());
+        AuthUser user1 = mapper.fromUpdateDto(updateDto);
+        user1.setId(updateDto.getId());
+        user1.setCode(user.getCode());
+        user1.setPassword(user.getPassword());
+        user1.setRole(user.getRole());
+        user1.setOrganizationId(user.getOrganizationId());
+        user1.setCreatedBy(user.getCreatedBy());
+//       user1.setActive(user.get);
+//        repository.save(organization);
+
     }
 
 
     @Override
     public List<AuthUserDto> getAll(GenericCriteria criteria) {
-        return null;
+        return mapper.toDto(repository.findAll());
     }
 
     @Override

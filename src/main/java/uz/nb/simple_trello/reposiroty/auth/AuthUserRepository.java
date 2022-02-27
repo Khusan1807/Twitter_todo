@@ -9,4 +9,6 @@ import java.util.Optional;
 public interface AuthUserRepository extends JpaRepository<AuthUser, Long>, AbstractRepository {
     Optional<AuthUser> findAuthUserByUsername(String username);
 
+
+    AuthUser findAuthUserById(Long id);
 }

@@ -60,7 +60,6 @@ public class OrganizationServiceImpl extends
     @Override
     public void update(OrganizationUpdateDto updateDto) {
         Optional<Organization> byId = repository.findById(updateDto.getId());
-
         Organization organization = mapper.fromUpdateDto(updateDto);
         organization.setLogo(byId.get().getLogo());
         organization.setId(updateDto.getId());

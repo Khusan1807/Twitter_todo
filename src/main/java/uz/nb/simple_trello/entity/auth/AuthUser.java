@@ -20,6 +20,9 @@ public class AuthUser extends Auditable {
     @Column(nullable = false)
     private String password;
 
+    @Column(unique = true)
+    private String phoneNumber;
+
     @Column(nullable = false, unique = true)
     private String email;
 
@@ -41,14 +44,5 @@ public class AuthUser extends Auditable {
 
     private boolean blocked;
 
-//    @Column(nullable = false )
-//    private String email;
-//
-//
-//    private boolean isSuperUser;
-//
-//    @OneToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "organization_id", nullable = false)
-//    private Organization organizationId;
 
 }
