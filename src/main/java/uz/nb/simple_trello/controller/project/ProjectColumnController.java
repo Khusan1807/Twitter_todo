@@ -9,14 +9,17 @@ import uz.nb.simple_trello.criteria.GenericCriteria;
 import uz.nb.simple_trello.dto.project.ProjectColumnCreateDto;
 import uz.nb.simple_trello.dto.project.ProjectColumnUpdateDto;
 import uz.nb.simple_trello.services.project.ProjectColumnService;
+import uz.nb.simple_trello.services.project.ProjectService;
 
-@RestController
+@Controller
 @RequestMapping("/projectColumn/*")
 public class ProjectColumnController extends AbstractController<ProjectColumnService> {
 
+    private  final ProjectService projectService;
     @Autowired
-    public ProjectColumnController(ProjectColumnService service) {
+    public ProjectColumnController(ProjectColumnService service, ProjectService projectService) {
         super(service);
+        this.projectService = projectService;
     }
 
 
@@ -67,8 +70,8 @@ public class ProjectColumnController extends AbstractController<ProjectColumnSer
 
     @RequestMapping(value = "list/{id}", method = RequestMethod.GET)
     public String listPage(Model model, @PathVariable(name = "id") Long id) {
-        model.addAttribute("projects", service.get(id));
-        model.addAttribute("id", id);
+        model.addAttribute("columns", service.getAllColumn(id  ));
+        model.addAttribute("project_id", id);
         return "column/list";
     }
 

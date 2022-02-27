@@ -96,7 +96,9 @@ public class ProjectColumnServiceImpl extends AbstractService<
     }
 
     @Override
-    public List<ProjectColumnDto> getAllProjects(Long id) {
-        return null;
+    public List<ProjectColumnDto> getAllColumn(Long id) {
+
+        List<ProjectColumn> columns = repository.findPro(id);
+         return mapper.toDto( columns );
     }
 }

@@ -6,6 +6,7 @@ import lombok.Setter;
 import uz.nb.simple_trello.dto.base.Dto;
 
 import java.time.LocalDateTime;
+
 @Setter
 @Getter
 @Builder
@@ -18,5 +19,6 @@ public class TaskCreateDto implements Dto {
     private LocalDateTime deadline;
     private Long projectId;
     private Long columnId;
+//    private LocalDateTime FinishDate;
 
 }

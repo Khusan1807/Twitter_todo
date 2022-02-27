@@ -5,8 +5,10 @@ import uz.nb.simple_trello.criteria.GenericCriteria;
 import uz.nb.simple_trello.dto.task.TaskCreateDto;
 import uz.nb.simple_trello.dto.task.TaskDto;
 import uz.nb.simple_trello.dto.task.TaskUpdateDto;
+import uz.nb.simple_trello.entity.project.ProjectColumn;
 import uz.nb.simple_trello.entity.task.Task;
 import uz.nb.simple_trello.mapper.task.TaskMapper;
+import uz.nb.simple_trello.reposiroty.project.ProjectColumnRepository;
 import uz.nb.simple_trello.reposiroty.task.TaskRepository;
 import uz.nb.simple_trello.services.base.AbstractService;
 import uz.nb.simple_trello.utils.BaseUtils;
@@ -28,14 +30,21 @@ public class TaskServiceImpl extends AbstractService<
         implements TaskService {
 
 
-    protected TaskServiceImpl(TaskRepository repository, TaskMapper mapper, TaskValidator validator, BaseUtils baseUtils) {
+    private final ProjectColumnRepository columnRepository;
+    protected TaskServiceImpl(TaskRepository repository, TaskMapper mapper, TaskValidator validator, BaseUtils baseUtils, ProjectColumnRepository columnRepository) {
         super(repository, mapper, validator, baseUtils);
+        this.columnRepository = columnRepository;
     }
 
     @Override
     public Long create(TaskCreateDto createDto) {
+        Long columnID=createDto.getColumnId();
+        ProjectColumn column = columnRepository.findById( columnID ).get();
+        Long project_id = column.getProjectId();
+        createDto.setProjectId(project_id);
         Task task = mapper.fromCreateDto(createDto);
         return repository.save(task).getId();
+
 
     }
 

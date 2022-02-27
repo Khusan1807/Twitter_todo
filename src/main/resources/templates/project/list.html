@@ -122,7 +122,7 @@
                         <th scope="col">Tz</th>
                         <th scope="col">isBlock</th>
                         <th scope="col">Column</th>
-                        <th scope="col">Add member</th>
+                        <th scope="col">Add Column</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -138,8 +138,8 @@
                             </form>
                         </th>
                         <th>
-                            <form method="get" th:action="@{/project_member/create_member/{id}(id = ${project.id})}">
-                                <button type="submit" class="btn btn-primary">Add member</button>
+                            <form method="get" th:action="@{/projectColumn/create/{id}(id = ${project.id})}">
+                                <button type="submit" class="btn btn-primary">Add Column</button>
                             </form>
                         </th>
 

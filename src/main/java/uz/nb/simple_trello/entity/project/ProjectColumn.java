@@ -6,6 +6,7 @@ import uz.nb.simple_trello.entity.base.Auditable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import java.time.LocalDateTime;
 
 
 @Setter
@@ -21,5 +22,8 @@ public class ProjectColumn extends Auditable {
     private int position;
 
     private boolean active;
+
+    @Column(columnDefinition = " timestamp ")
+    private LocalDateTime deadline;
 
 }

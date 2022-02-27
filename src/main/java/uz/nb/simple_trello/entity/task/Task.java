@@ -24,6 +24,7 @@ public class Task extends Auditable {
     private Long priority;
 
     private Long projectId;
+    private Long columnId;
 
     @Column(columnDefinition = " timestamp ")
     private LocalDateTime deadline;

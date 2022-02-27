@@ -150,6 +150,9 @@ nav .input {
   background: #f6f6f6;
   border-radius: 17px;
 }
+.box p{
+  margin-bottom: 0;
+}
 
 .content-box {
   padding: 22px;

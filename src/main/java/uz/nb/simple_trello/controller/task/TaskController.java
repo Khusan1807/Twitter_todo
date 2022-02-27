@@ -1,17 +1,16 @@
 package uz.nb.simple_trello.controller.task;
 
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import uz.nb.simple_trello.controller.base.AbstractController;
 import uz.nb.simple_trello.criteria.GenericCriteria;
 import uz.nb.simple_trello.dto.task.TaskCreateDto;
 import uz.nb.simple_trello.dto.task.TaskUpdateDto;
 import uz.nb.simple_trello.services.task.TaskService;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Controller
 @RequestMapping("/task/*")
@@ -27,14 +26,19 @@ public class TaskController extends AbstractController<TaskService> {
     }
 
 
-    @RequestMapping(value = "create", method = RequestMethod.GET)
-    public String createPage() {
+    @RequestMapping(value = "create/{id}", method = RequestMethod.GET)
+    public String createPage(@PathVariable(name = "id") Long id,Model model) {
+        model.addAttribute( "id",id );
         return "task/create";
     }
 
 
-    @RequestMapping(value = "create", method = RequestMethod.POST)
-    public String create(@ModelAttribute TaskCreateDto dto) {
+    @RequestMapping(value = "create/{id}", method = RequestMethod.POST)
+    public String create(@ModelAttribute TaskCreateDto dto, @PathVariable(name = "id") Long id, @RequestParam(name = "deadline1") String deadline ) {
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
+        LocalDateTime date = LocalDateTime.parse(deadline, format);
+        dto.setDeadline(date);
+        dto.setColumnId( id );
         service.create(dto);
         return "task/create";
     }

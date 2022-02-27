@@ -18,7 +18,7 @@ public interface ProjectColumnService extends GenericCrudService<
         GenericCriteria,
         Long
         > {
-//    List<ProjectDto> getAllProjects(Long id);
-  List<ProjectColumnDto> getAllProjects(Long id);
+
+  List<ProjectColumnDto> getAllColumn(Long id);
 }
 

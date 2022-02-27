@@ -1,7 +1,6 @@
 package uz.nb.simple_trello.mapper.task;
 
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.springframework.stereotype.Component;
 import uz.nb.simple_trello.dto.task.TaskCreateDto;
 import uz.nb.simple_trello.dto.task.TaskDto;

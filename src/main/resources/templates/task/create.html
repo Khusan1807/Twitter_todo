@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:include="fragment.html :: header('Task Create Page')">
+</head>
+<body>
+<header>
+    <section th:include="fragment.html :: navbar"></section>
+</header>
+<main>
+    <div class="container">
+        <div class="row">
+            <div class="col-10 mx-auto">
+                <form th:action="@{/task/create/{id}(id=${id})}" method="post" >
+
+
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name" name="name"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="desc">Description</label>
+                        <input type="text" class="form-control" name="description" id="desc"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="level">level</label>
+                        <select name="level" id="level">
+                            <option value="1">Easy</option>
+                            <option value="2">Medium</option>
+                            <option value="3">Hard</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="priority">priority</label>
+                        <input type="number" maxlength="10" class="form-control" name="priority" id="priority"/>
+                    </div>
+
+                     <div class="form-group">
+                        <label for="deadline1">deadline</label>
+                        <input type="datetime-local"  class="form-control" name="deadline1" id="deadline1"/>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">➕ Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+<script src="/webjars/jquery/3.6.0/jquery.min.js"></script>
+<script src="/webjars/bootstrap/4.6.1/js/bootstrap.min.js"></script>
+</body>
+</html>
