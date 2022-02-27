@@ -20,15 +20,17 @@ public class ProjectColumnController extends AbstractController<ProjectColumnSer
     }
 
 
-    @RequestMapping(value = "create", method = RequestMethod.GET)
-    public String createPage() {
-        return "project_column/create";
+    @RequestMapping(value = "create/{id}", method = RequestMethod.GET)
+    public String createPage(@PathVariable(name = "id") Long id) {
+        return "column/create";
     }
 
-    @RequestMapping(value = "create", method = RequestMethod.POST)
-    public String create(@ModelAttribute ProjectColumnCreateDto dto) {
+    @RequestMapping(value = "create/{id}", method = RequestMethod.POST)
+    public String create(@ModelAttribute ProjectColumnCreateDto dto,@PathVariable(name = "id") Long id) {
+        dto.setProjectId( id );
         service.create(dto);
-        return "project_column/create";
+        return "index/index";
+
     }
 
     @RequestMapping(value = "get/{id}", method = RequestMethod.GET)
@@ -63,9 +65,11 @@ public class ProjectColumnController extends AbstractController<ProjectColumnSer
     }
 
 
-    @RequestMapping(value = "list")
-    public String homePage(Model model) {
-        return "index/index";
+    @RequestMapping(value = "list/{id}", method = RequestMethod.GET)
+    public String listPage(Model model, @PathVariable(name = "id") Long id) {
+        model.addAttribute("projects", service.get(id));
+        model.addAttribute("id", id);
+        return "column/list";
     }
 
     @RequestMapping(value = "project", method = RequestMethod.GET)

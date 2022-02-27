@@ -16,7 +16,7 @@ public class ProjectColumn extends Auditable {
     private String name;
 
     @Column(name = "project_id", nullable = false)
-    private Long project_id;
+    private Long projectId;
 
     private int position;
 

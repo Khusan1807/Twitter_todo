@@ -10,5 +10,5 @@ import uz.nb.simple_trello.dto.base.GenericDto;
 @Builder(builderMethodName = "childBuilder")
 public class ProjectColumnDto extends GenericDto {
     private String name;
-    private Long project_id;
+    private Long projectId;
 }

@@ -121,7 +121,7 @@
                         <th scope="col">Description</th>
                         <th scope="col">Tz</th>
                         <th scope="col">isBlock</th>
-                        <th scope="col">Tasks</th>
+                        <th scope="col">Column</th>
                         <th scope="col">Add member</th>
                     </tr>
                     </thead>
@@ -133,12 +133,12 @@
                         <th th:text="${project.tz}"></th>
                         <th th:text="${project.closed}"></th>
                         <th>
-                            <form th:action="@{/task/list/{id}(id=${project.id})}">
-                                <button type="submit" class="btn btn-success">Tasks</button>
+                            <form th:action="@{/projectColumn/list/{id}(id=${project.id})}">
+                                <button type="submit" class="btn btn-success">Columns</button>
                             </form>
                         </th>
                         <th>
-                            <form th:action="@{/project_member/create_member/{id}(id = ${project.id})}">
+                            <form method="get" th:action="@{/project_member/create_member/{id}(id = ${project.id})}">
                                 <button type="submit" class="btn btn-primary">Add member</button>
                             </form>
                         </th>
@@ -154,7 +154,7 @@
                     </tbody>
                 </table>
                 <a th:href="@{/project/create/{id}(id=${id})}" style="margin-left: 1000px;">
-                    <button class="btn btn-primary " type="submit"> ➕</button>
+                    <button class="btn btn-primary " type="submit"> ➕ project</button>
                 </a>
 
             </div>

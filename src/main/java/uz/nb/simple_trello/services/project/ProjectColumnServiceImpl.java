@@ -41,14 +41,13 @@ public class ProjectColumnServiceImpl extends AbstractService<
 
     @Override
     public Long create(ProjectColumnCreateDto createDto) {
-        Project project = repository.findProject(createDto.getProject_id());
+        Project project = repository.findProject(createDto.getProjectId());
 
         if (Objects.isNull(project)) {
             throw new RuntimeException("Wrong data");
         }
         ProjectColumn projectColumn = mapper.fromCreateDto(createDto);
         projectColumn.setActive(true);
-
         return repository.save(projectColumn).getId();
     }
 
@@ -93,6 +92,11 @@ public class ProjectColumnServiceImpl extends AbstractService<
 
     @Override
     public Long totalCount(GenericCriteria criteria) {
+        return null;
+    }
+
+    @Override
+    public List<ProjectColumnDto> getAllProjects(Long id) {
         return null;
     }
 }
