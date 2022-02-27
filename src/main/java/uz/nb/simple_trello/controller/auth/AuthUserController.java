@@ -18,12 +18,11 @@ public class AuthUserController extends AbstractController<AuthUserService> {
 
 
   private final  PasswordEncoder passwordEncoder;
-  private  final UserDetails userDetails;
 
-    public AuthUserController(AuthUserService service, PasswordEncoder passwordEncoder, UserDetails userDetails) {
+
+    public AuthUserController(AuthUserService service, PasswordEncoder passwordEncoder) {
         super(service);
         this.passwordEncoder = passwordEncoder;
-        this.userDetails = userDetails;
     }
 
 
@@ -56,14 +55,9 @@ public class AuthUserController extends AbstractController<AuthUserService> {
 
     @RequestMapping(value = "logout", method = RequestMethod.GET)
     public String logoutPage() {
-        return "/auth/logout";
+        return "auth/logout";
     }
 
 
-    @RequestMapping(value = "logout", method = RequestMethod.POST)
-    public String logout() {
-        service.logout();
-        return "/";
-    }
 
 }

@@ -37,7 +37,6 @@ public class UserDetails implements org.springframework.security.core.userdetail
     private void processAuthorities(AuthUser user) {
         authorities = new HashSet<>();
         AuthRole role = user.getRole();
-
         if (Objects.isNull(role)) return;
         authorities.add(new SimpleGrantedAuthority("ROLE_" + role.getCode()));
         if (Objects.isNull(role.getPermissions())) return;

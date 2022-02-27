@@ -97,7 +97,4 @@ public class AuthUserServiceImpl extends
         userDetailsService.loadUserByUsername(dto.getUsername());
     }
 
-    public void logout() {
-        userDetailsService = null;
-    }
 }
