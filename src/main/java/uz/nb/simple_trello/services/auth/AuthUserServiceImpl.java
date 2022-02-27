@@ -9,10 +9,8 @@ import uz.nb.simple_trello.dto.auth.AuthUserCreateDto;
 import uz.nb.simple_trello.dto.auth.AuthUserDto;
 import uz.nb.simple_trello.dto.auth.AuthUserUpdateDto;
 import uz.nb.simple_trello.dto.auth.LoginDto;
-import uz.nb.simple_trello.dto.organization.OrganizationDto;
 import uz.nb.simple_trello.entity.auth.AuthUser;
 import uz.nb.simple_trello.entity.base.AuditAwareImpl;
-import uz.nb.simple_trello.entity.organization.Organization;
 import uz.nb.simple_trello.mapper.auth.AuthUserMapper;
 import uz.nb.simple_trello.reposiroty.auth.AuthRoleRepository;
 import uz.nb.simple_trello.reposiroty.auth.AuthUserRepository;
@@ -76,8 +74,8 @@ public class AuthUserServiceImpl extends
         user1.setRole(user.getRole());
         user1.setOrganizationId(user.getOrganizationId());
         user1.setCreatedBy(user.getCreatedBy());
-//       user1.setActive(user.get);
-//        repository.save(organization);
+        user1.setActive(true);
+        repository.save(user1);
 
     }
 
@@ -97,6 +95,18 @@ public class AuthUserServiceImpl extends
         return null;
     }
 
+
+    @Override
+    public List<AuthUserDto> usersList() {
+        List<AuthUser> all = repository.findAllUsers();
+        return mapper.toDto(all);
+
+    }
+
+    @Override
+    public Object getUsers() {
+        return null;
+    }
 
     @Override
     public void login(LoginDto dto) {

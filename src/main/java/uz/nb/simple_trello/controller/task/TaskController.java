@@ -48,6 +48,7 @@ public class TaskController extends AbstractController<TaskService> {
 
     @RequestMapping(value = "list/{id}", method = RequestMethod.GET)
     public String listPage(Model model ,@PathVariable(name = "id") Long id) {
+
         model.addAttribute("tasks", service.getAllTasks(id));
         return "task/list";
 

@@ -121,9 +121,10 @@
                         <th scope="col">Name</th>
                         <th scope="col">Email</th>
                         <th scope="col">Phone Number</th>
-                        <th scope="col">Code</th>
                         <th scope="col">Role</th>
                         <th scope="col">Blocked</th>
+                        <th scope="col">Tasks</th>
+                        <th scope="col">CRUD</th>
 
                     </tr>
                     </thead>
@@ -133,11 +134,10 @@
                         <th th:text="${user.username}"></th>
                         <th th:text="${user.email}"></th>
                         <th th:text="${user.phoneNumber}"></th>
-                        <th th:text="${user.code}"></th>
                         <th th:text="${user.getRole().getName()}"></th>
                         <th th:text="${user.blocked}"></th>
                         <th>
-                            <form th:action="@{/task/list/{id}(id=${user.id})}">
+                            <form th:action="@{/task/list/{id}(id = ${user.id})}" method="get">
                                 <button type="submit" class="btn btn-success">Tasks</button>
                             </form>
 
@@ -145,7 +145,7 @@
 
 
                         <th class="icons d-flex justify-content-between">
-                            <a th:href="@{/auth/detail/{id}/(id = ${user.id})}">👁</a>
+                            <a th:href="@{/auth/detail/{id}(id = ${user.id})}">👁</a>
                             <a href="#">🔐</a>
                             <a href="#">🔓</a>
                             <a th:href="@{/auth/delete/{id}(id=${user.id})}">🗑</a>
